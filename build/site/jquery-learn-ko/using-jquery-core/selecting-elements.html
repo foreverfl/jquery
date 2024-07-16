@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>요소 선택하기 :: jQuery</title>
+    <link rel="canonical" href="https://jquery.mogumogu.dev/jquery-learn-ko/using-jquery-core/selecting-elements.html">
+    <link rel="prev" href="attributes.html">
+    <link rel="next" href="working-with-selections.html">
+    <meta name="generator" content="Antora 3.1.9">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+  </head>
+  <body class="article">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4751026650729929"
+     crossorigin="anonymous"></script><header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://jquery.mogumogu.dev">jQuery</a>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Toggle main menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">프로젝트</a>
+          <div class="navbar-dropdown">
+            <div class="navbar-item is-active"><strong>코어</strong></div>
+            <a class="navbar-item" href="https://github.com/foreverfl/antora-ko">저장소</a>
+            <a class="navbar-item" href="https://github.com/foreverfl/antora-ko/issues">이슈 트래커</a>
+            <hr class="navbar-divider">
+            <div class="navbar-item is-active"><strong>기본 UI</strong></div>
+            <a class="navbar-item" href="https://github.com/foreverfl/antora-ui">저장소</a>
+            <a class="navbar-item" href="https://github.com/foreverfl/antora-ui/issues">이슈 트래커</a>
+            <hr class="navbar-divider">
+            <a class="navbar-item" href="https://github.com/sponsors/foreverfl">후원하기</a>
+            <a class="navbar-item" href="#">기여하기</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">도구</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">빌드 자동화</a>
+            <a class="navbar-item has-label" href="https://hub.docker.com/r/antora/antora">Docker 이미지 <small>(OCI)</small></a>
+            <a class="navbar-item has-label" href="https://gitlab.com/antora/antora-maven-plugin">Maven 플러그인 <small>(Java)</small></a>
+            <a class="navbar-item has-label" href="https://gitlab.com/antora/gradle-antora-plugin">Gradle 플러그인 <small>(Java)</small></a>
+            <hr class="navbar-divider">
+            <a class="navbar-item" href="#">저작 / 미리보기</a>
+            <a class="navbar-item has-label" href="https://intellij-asciidoc-plugin.ahus1.de/docs/users-guide/features/advanced/antora.html">AsciiDoc 플러그인 <small>(IntelliJ)</small></a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">언어</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://docs.antora.org/antora/latest/">English</a>
+            <a class="navbar-item" href="#">日本語</a>
+            <a class="navbar-item" href="#">한국어</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <a href="https://mogumogu.dev">
+            <img src="../../blog.ico" alt="Blog Icon" style="width: 24px; height: 24px;">
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="jquery-learn-ko" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="../index.html">jQuery 학습하기</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../about-jquery/about-jquery.html">jQuery란?</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../about-jquery/how-jquery-works.html">jQuery 작동 방식</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../about-jquery/additional-jquery-support.html">추가적인 jQuery 지원</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">jQuery 코어 사용하기</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="dollar.html">$ vs $()</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="document-ready.html">$( document ).ready()</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="avoiding-conflicts-with-other-libraries.html">다른 라이브러리와의 충돌 방지하기</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="attributes.html">속성</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="selecting-elements.html">요소 선택하기</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="working-with-selections.html">선택 작업하기</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="manipulating-elements.html">요소 조작하기</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="the-jquery-object.html">jQuery 객체</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="traversing.html">순회하기</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="css-styling-dimensions.html">CSS, 스타일링 및 치수</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="data-methods.html">데이터 메서드</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="utility-methods.html">유틸리티 메서드</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="iterating-over-jquery-and-non-jquery-objects.html">jQuery 및 비 jQuery 객체 반복</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="using-jquerys-index-function.html">jQuery의 .index() 함수 사용하기</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="frequently-asked-questions.html">자주 묻는 질문</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="how-do-i-select-an-item-using-class-or-id.html">어떻게 class나 ID를 사용하여 항목을 선택할 수 있나요?</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="how-do-i-select-elements-when-i-already-have-a-dom-element.html">이미 DOM 요소가 있을 때 어떻게 요소를 선택할 수 있나요?</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="how-do-i-test-whether-an-element-has-a-particular-class.html">요소가 특정 클래스를 가지고 있는지 어떻게 테스트할 수 있나요?</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="how-do-i-test-whether-an-element-exists.html">요소가 존재하는지 어떻게 테스트할 수 있나요?</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="how-do-i-determine-the-state-of-a-toggled-element.html">토글된 요소의 상태를 어떻게 확인할 수 있나요?</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="how-do-i-select-an-element-by-an-id-that-has-characters-used-in-css-notation.html">CSS 표기법에 사용되는 문자가 포함된 ID로 어떻게 요소를 선택할 수 있나요?</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="how-do-i-disable-enable-a-form-element.html">폼 요소를 어떻게 비활성화/활성화할 수 있나요?</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="how-do-i-check-uncheck-a-checkbox-input-or-radio-button.html">체크박스 입력이나 라디오 버튼을 어떻게 체크/해제할 수 있나요?</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="how-do-i-get-the-text-value-of-a-selected-option.html">선택된 옵션의 텍스트 값을 어떻게 가져올 수 있나요?</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="how-do-i-replace-text-from-the-3rd-element-of-a-list-of-10-items.html">10개 항목 리스트의 3번째 요소의 텍스트를 어떻게 교체할 수 있나요?</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="how-do-i-pull-a-native-dom-element-from-a-jquery-object.html">jQuery 객체에서 네이티브 DOM 요소를 어떻게 가져올 수 있나요?</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">이벤트</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">jQuery 이벤트 기초</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">이벤트 헬퍼</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">이벤트 소개</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">이벤트 처리</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">이벤트 처리 함수 내부</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">이벤트 위임 이해하기</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">이벤트 핸들러 트리거하기</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">jQuery 이벤트의 역사</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">커스텀 이벤트 소개</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">jQuery 이벤트 확장</span>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">효과</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">효과 소개</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">.animate()를 사용한 커스텀 효과</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">큐(Queue)와 데크(Dequeue) 설명</span>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Ajax</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">주요 개념</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">jQuery의 Ajax 관련 메서드</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">Ajax와 폼</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">JSONP 작업하기</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">Ajax 이벤트</span>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">플러그인</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">플러그인 찾기 및 평가하기</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">기본 플러그인 만들기</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">npm에 jQuery 플러그인 게시하기</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">고급 플러그인 개념</span>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">성능</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">루프 외부에 추가하기</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">루프 중 길이 캐싱</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">작업을 위해 요소 분리하기</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">존재하지 않는 요소에 작용하지 않기</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">선택자 최적화</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">많은 요소의 CSS 변경에 스타일시트 사용하기</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">jQuery를 블랙박스로 취급하지 않기</span>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">코드 구성</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">코드 구성 개념</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">익명 함수 주의하기</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">DRY 원칙 유지하기</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">기능 및 브라우저 감지</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">지연된 객체</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text">jQuery 지연된 객체</span>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text">지연된 객체 예제</span>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">jQuery UI</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">jQuery UI 시작하기</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">jQuery UI 작동 방식</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">jQuery UI 테마 적용</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">jQuery UI ThemeRoller 사용하기</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text">위젯 팩토리</span>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text">위젯 팩토리를 사용하는 이유</span>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text">위젯 팩토리 사용 방법</span>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text">위젯 메서드 호출</span>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text">위젯 팩토리로 위젯 확장하기</span>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text">classes 옵션 사용하기</span>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">jQuery UI 사용하기</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text">AMD와 함께 jQuery UI 사용하기</span>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text">Bower와 함께 jQuery UI 사용하기</span>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">jQuery 모바일</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">jQuery 모바일 시작하기</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">ThemeRoller로 커스텀 테마 만들기</span>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">jQuery 학습하기</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="../index.html">jQuery 학습하기</a></div>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">jQuery 학습하기</a></li>
+    <li>jQuery 코어 사용하기</li>
+    <li><a href="selecting-elements.html">요소 선택하기</a></li>
+  </ul>
+</nav>
+<div class="edit-this-page"><a href="https://github.com/foreverfl/jquery-learn-ko/edit/main/modules/using-jquery-core/pages/selecting-elements.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">요소 선택하기</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>jQuery의 가장 기본적인 개념은 "일부 요소를 선택하고 그것들로 무언가를 하는 것"입니다. jQuery는 대부분의 CSS3 선택자를 지원하며, 일부 비표준 선택자도 지원합니다. 전체 선택자 참조는 api.jquery.com의 선택자 문서를 참조하세요.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_id로_요소_선택하기"><a class="anchor" href="#_id로_요소_선택하기"></a>ID로 요소 선택하기</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">$( "#myId" ); // 주의: ID는 페이지당 고유해야 합니다.</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_클래스_이름으로_요소_선택하기"><a class="anchor" href="#_클래스_이름으로_요소_선택하기"></a>클래스 이름으로 요소 선택하기</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">$( ".myClass" );</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_속성으로_요소_선택하기"><a class="anchor" href="#_속성으로_요소_선택하기"></a>속성으로 요소 선택하기</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">$( "input[name='first_name']" );</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_복합_css_선택자로_요소_선택하기"><a class="anchor" href="#_복합_css_선택자로_요소_선택하기"></a>복합 CSS 선택자로 요소 선택하기</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">$( "#contents ul.people li" );</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_쉼표로_구분된_선택자_목록으로_요소_선택하기"><a class="anchor" href="#_쉼표로_구분된_선택자_목록으로_요소_선택하기"></a>쉼표로 구분된 선택자 목록으로 요소 선택하기</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">$( "div.myClass, ul.people" );</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_의사_선택자_pseudo_selectors"><a class="anchor" href="#_의사_선택자_pseudo_selectors"></a>의사 선택자 (Pseudo-Selectors)</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">$( "a.external:first" );
+$( "tr:odd" );
+
+// 폼의 모든 입력 유사 요소 선택하기 (자세한 내용은 아래 참조).
+$( "#myForm :input" );
+$( "div:visible" );
+
+// 처음 세 개를 제외한 모든 div.
+$( "div:gt(2)" );
+
+// 현재 애니메이션 중인 모든 div.
+$( "div:animated" );</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>:visible</code>과 <code>:hidden</code> 의사 선택자를 사용할 때, jQuery는 요소의 CSS <code>visibility</code>이나 <code>display</code> 속성이 아닌 실제 가시성을 테스트합니다. jQuery는 요소의 물리적 높이와 너비가 모두 0보다 큰지 확인합니다.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>그러나 이 테스트는 <code>&lt;tr&gt;</code> 요소에는 작동하지 않습니다. <code>&lt;tr&gt;</code>의 경우 jQuery는 CSS <code>display</code> 속성을 확인하고, <code>display</code> 속성이 <code>none</code>으로 설정되어 있으면 요소를 숨겨진 것으로 간주합니다.</p>
+</div>
+<div class="paragraph">
+<p>DOM에 추가되지 않은 요소는 CSS가 그들을 보이게 렌더링할 수 있더라도 항상 숨겨진 것으로 간주됩니다. DOM에 요소를 생성하고 추가하는 방법을 배우려면 요소 조작 섹션을 참조하세요.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_선택자_선택하기"><a class="anchor" href="#_선택자_선택하기"></a>선택자 선택하기</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>좋은 선택자를 선택하는 것은 JavaScript의 성능을 향상시키는 한 방법입니다. 너무 많은 특수성은 좋지 않을 수 있습니다. <code>#myTable thead tr th.special</code>과 같은 선택자는 <code>#myTable th.special</code>로도 선택이 가능할 경우에는 성능을 하락시킵니다.</p>
+</div>
+<div class="sect2">
+<h3 id="_내_선택에_요소가_포함되어_있나요"><a class="anchor" href="#_내_선택에_요소가_포함되어_있나요"></a>내 선택에 요소가 포함되어 있나요?</h3>
+<div class="paragraph">
+<p>선택을 한 후에는 작업할 것이 있는지 알고 싶을 것입니다. 흔한 실수는 다음과 같이 사용하는 것입니다:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">// 작동하지 않습니다!
+if ( $( "div.foo" ) ) {
+    ...
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>이는 작동하지 않습니다. <code>$()</code>를 사용하여 선택을 할 때 항상 객체가 반환되며, 객체는 항상 <code>true</code>로 평가됩니다. 선택에 요소가 포함되어 있지 않더라도 if 문 내부의 코드가 여전히 실행됩니다.</p>
+</div>
+<div class="paragraph">
+<p>요소가 있는지 확인하는 가장 좋은 방법은 선택의 <code>.length</code> 속성을 테스트하는 것입니다. 이는 선택된 요소의 수를 알려줍니다. 답이 0이면 <code>.length</code> 속성은 부울 값으로 사용될 때 false로 평가됩니다:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">// 선택에 요소가 포함되어 있는지 테스트하기.
+if ( $( "div.foo" ).length ) {
+    ...
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_선택_저장하기"><a class="anchor" href="#_선택_저장하기"></a>선택 저장하기</h3>
+<div class="paragraph">
+<p>jQuery는 요소를 캐시하지 않습니다. 다시 필요할 수 있는 선택을 했다면, 선택을 반복적으로 하는 대신 변수에 선택을 저장해야 합니다.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">var divs = $( "div" );</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>선택이 변수에 저장되면, 원래 선택에서 jQuery 메서드를 호출했던 것처럼 변수에서 jQuery 메서드를 호출할 수 있습니다.</p>
+</div>
+<div class="paragraph">
+<p>선택은 선택이 이루어진 시점에 페이지에 있는 요소만 가져옵니다. 나중에 페이지에 요소가 추가되면 선택을 반복하거나 다른 방법으로 변수에 저장된 선택에 추가해야 합니다. 저장된 선택은 DOM이 변경될 때 마법처럼 업데이트되지 않습니다.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_선택_개선_및_필터링"><a class="anchor" href="#_선택_개선_및_필터링"></a>선택 개선 및 필터링</h3>
+<div class="paragraph">
+<p>때때로 선택에는 원하는 것보다 더 많은 것이 포함되어 있습니다. jQuery는 선택을 개선하고 필터링하는 여러 메서드를 제공합니다.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">// 선택 개선하기.
+$( "div.foo" ).has( "p" );         // &lt;p&gt; 태그를 포함하는 div.foo 요소
+$( "h1" ).not( ".bar" );           // bar 클래스가 없는 h1 요소
+$( "ul li" ).filter( ".current" ); // current 클래스를 가진 순서 없는 목록 항목
+$( "ul li" ).first();              // 첫 번째 순서 없는 목록 항목만
+$( "ul li" ).eq( 5 );              // 여섯 번째</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_폼_요소_선택하기"><a class="anchor" href="#_폼_요소_선택하기"></a>폼 요소 선택하기</h3>
+<div class="paragraph">
+<p>jQuery는 폼에서 요소를 찾는 데 도움이 되는 여러 의사 선택자를 제공합니다. 이들은 특히 표준 CSS 선택자를 사용하여 상태나 유형에 따라 폼 요소를 구별하기 어려울 때 유용합니다.</p>
+</div>
+<div class="sect3">
+<h4 id="_checked"><a class="anchor" href="#_checked"></a>:checked</h4>
+<div class="paragraph">
+<p><em>:checkbox</em>와 혼동하지 마세요. <code>:checked</code>는 체크된 체크박스를 대상으로 하지만, 이 선택자는 체크된 라디오 버튼과 <code>&lt;select&gt;</code> 요소에도 작동합니다(<code>&lt;select&gt;</code> 요소의 경우에만 <code>:selected</code> 선택자를 사용하세요):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">$( "form :checked" );</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>:checked</code> 의사 선택자는 체크박스, 라디오 버튼, 선택 요소와 함께 사용됩니다.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_disabled"><a class="anchor" href="#_disabled"></a>:disabled</h4>
+<div class="paragraph">
+<p><code>:disabled</code> 의사 선택자를 사용하면 disabled 속성이 있는 모든 <code>&lt;input&gt;</code> 요소를 대상으로 합니다:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">$( "form :disabled" );</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>:disabled</code>를 사용하여 최상의 성능을 얻으려면, 먼저 표준 jQuery 선택자로 요소를 선택한 다음 <code>.filter( ":disabled" )</code>를 사용하거나, 의사 선택자 앞에 태그 이름이나 다른 선택자를 붙이세요.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_enabled"><a class="anchor" href="#_enabled"></a>:enabled</h4>
+<div class="paragraph">
+<p>기본적으로 <code>:disabled</code> 의사 선택자의 반대인 <code>:enabled</code> 의사 선택자는 <code>disabled</code> 속성이 없는 모든 요소를 대상으로 합니다:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">$( "form :enabled" );</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>:enabled</code>를 사용하여 최상의 성능을 얻으려면, 먼저 표준 jQuery 선택자로 요소를 선택한 다음 <code>.filter( ":enabled" )</code>를 사용하거나, 의사 선택자 앞에 태그 이름이나 다른 선택자를 붙이세요.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_input"><a class="anchor" href="#_input"></a>:input</h4>
+<div class="paragraph">
+<p><code>:input</code> 선택자를 사용하면 모든 <code>&lt;input&gt;</code>, <code>&lt;textarea&gt;</code>, <code>&lt;select&gt;</code>, <code>&lt;button&gt;</code> 요소를 선택합니다:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">$( "form :input" );</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_selected"><a class="anchor" href="#_selected"></a>:selected</h4>
+<div class="paragraph">
+<p><code>:selected</code> 의사 선택자를 사용하면 <code>&lt;option&gt;</code> 요소에서 선택된 모든 항목을 대상으로 합니다:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">$( "form :selected" );</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>:selected</code>를 사용하여 최상의 성능을 얻으려면, 먼저 표준 jQuery 선택자로 요소를 선택한 다음 <code>.filter( ":selected" )</code>를 사용하거나, 의사 선택자 앞에 태그 이름이나 다른 선택자를 붙이세요.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_유형별_선택하기"><a class="anchor" href="#_유형별_선택하기"></a>유형별 선택하기</h4>
+<div class="paragraph">
+<p>jQuery는 폼 특정 요소를 유형에 따라 선택하기 위한 의사 선택자를 제공합니다:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>:password</code></p>
+</li>
+<li>
+<p><code>:reset</code></p>
+</li>
+<li>
+<p><code>:radio</code></p>
+</li>
+<li>
+<p><code>:text</code></p>
+</li>
+<li>
+<p><code>:submit</code></p>
+</li>
+<li>
+<p><code>:checkbox</code></p>
+</li>
+<li>
+<p><code>:button</code></p>
+</li>
+<li>
+<p><code>:image</code></p>
+</li>
+<li>
+<p><code>:file</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>이 모든 선택자에 대해 성능에 관한 부가 설명이 있으므로, 더 자세한 정보를 위해 API 문서를 확인하세요.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="attributes.html">속성</a></span>
+  <span class="next"><a href="working-with-selections.html">선택 작업하기</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>저작권 © <a href="https://opendevise.com" target="_blank" rel="noopener">OpenDevise Inc.</a> 및 <a href="https://antora.org">Antora</a>의 개인 기여자들. 사이트 배포는 <a href="https://vercel.com/" target="_blank" rel="noopener">Vercel</a>에 의해 이루어집니다.</p>
+  <p>별도로 명시되지 않는 한, docs.antora.org, Antora 및 Antora UI는 <a href="https://www.mozilla.org/en-US/MPL/2.0/">Mozilla Public License Version 2.0</a> (MPL-2.0)에 따라 라이선스가 부여됩니다.</p>
+  <p>AsciiDoc®는 Eclipse Foundation, Inc.의 상표입니다.</p>
+</footer><script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

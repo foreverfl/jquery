@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>다른 라이브러리와의 충돌 방지하기 :: jQuery</title>
+    <link rel="canonical" href="https://jquery.mogumogu.dev/jquery-learn-ko/using-jquery-core/avoiding-conflicts-with-other-libraries.html">
+    <link rel="prev" href="document-ready.html">
+    <link rel="next" href="attributes.html">
+    <meta name="generator" content="Antora 3.1.9">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+  </head>
+  <body class="article">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4751026650729929"
+     crossorigin="anonymous"></script><header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://jquery.mogumogu.dev">jQuery</a>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Toggle main menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">프로젝트</a>
+          <div class="navbar-dropdown">
+            <div class="navbar-item is-active"><strong>코어</strong></div>
+            <a class="navbar-item" href="https://github.com/foreverfl/antora-ko">저장소</a>
+            <a class="navbar-item" href="https://github.com/foreverfl/antora-ko/issues">이슈 트래커</a>
+            <hr class="navbar-divider">
+            <div class="navbar-item is-active"><strong>기본 UI</strong></div>
+            <a class="navbar-item" href="https://github.com/foreverfl/antora-ui">저장소</a>
+            <a class="navbar-item" href="https://github.com/foreverfl/antora-ui/issues">이슈 트래커</a>
+            <hr class="navbar-divider">
+            <a class="navbar-item" href="https://github.com/sponsors/foreverfl">후원하기</a>
+            <a class="navbar-item" href="#">기여하기</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">도구</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">빌드 자동화</a>
+            <a class="navbar-item has-label" href="https://hub.docker.com/r/antora/antora">Docker 이미지 <small>(OCI)</small></a>
+            <a class="navbar-item has-label" href="https://gitlab.com/antora/antora-maven-plugin">Maven 플러그인 <small>(Java)</small></a>
+            <a class="navbar-item has-label" href="https://gitlab.com/antora/gradle-antora-plugin">Gradle 플러그인 <small>(Java)</small></a>
+            <hr class="navbar-divider">
+            <a class="navbar-item" href="#">저작 / 미리보기</a>
+            <a class="navbar-item has-label" href="https://intellij-asciidoc-plugin.ahus1.de/docs/users-guide/features/advanced/antora.html">AsciiDoc 플러그인 <small>(IntelliJ)</small></a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">언어</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://docs.antora.org/antora/latest/">English</a>
+            <a class="navbar-item" href="#">日本語</a>
+            <a class="navbar-item" href="#">한국어</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <a href="https://mogumogu.dev">
+            <img src="../../blog.ico" alt="Blog Icon" style="width: 24px; height: 24px;">
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="jquery-learn-ko" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="../index.html">jQuery 학습하기</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../about-jquery/about-jquery.html">jQuery란?</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../about-jquery/how-jquery-works.html">jQuery 작동 방식</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../about-jquery/additional-jquery-support.html">추가적인 jQuery 지원</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">jQuery 코어 사용하기</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="dollar.html">$ vs $()</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="document-ready.html">$( document ).ready()</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="avoiding-conflicts-with-other-libraries.html">다른 라이브러리와의 충돌 방지하기</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="attributes.html">속성</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="selecting-elements.html">요소 선택하기</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="working-with-selections.html">선택 작업하기</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="manipulating-elements.html">요소 조작하기</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="the-jquery-object.html">jQuery 객체</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="traversing.html">순회하기</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="css-styling-dimensions.html">CSS, 스타일링 및 치수</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="data-methods.html">데이터 메서드</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="utility-methods.html">유틸리티 메서드</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="iterating-over-jquery-and-non-jquery-objects.html">jQuery 및 비 jQuery 객체 반복</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="using-jquerys-index-function.html">jQuery의 .index() 함수 사용하기</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="frequently-asked-questions.html">자주 묻는 질문</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="how-do-i-select-an-item-using-class-or-id.html">어떻게 class나 ID를 사용하여 항목을 선택할 수 있나요?</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="how-do-i-select-elements-when-i-already-have-a-dom-element.html">이미 DOM 요소가 있을 때 어떻게 요소를 선택할 수 있나요?</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="how-do-i-test-whether-an-element-has-a-particular-class.html">요소가 특정 클래스를 가지고 있는지 어떻게 테스트할 수 있나요?</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="how-do-i-test-whether-an-element-exists.html">요소가 존재하는지 어떻게 테스트할 수 있나요?</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="how-do-i-determine-the-state-of-a-toggled-element.html">토글된 요소의 상태를 어떻게 확인할 수 있나요?</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="how-do-i-select-an-element-by-an-id-that-has-characters-used-in-css-notation.html">CSS 표기법에 사용되는 문자가 포함된 ID로 어떻게 요소를 선택할 수 있나요?</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="how-do-i-disable-enable-a-form-element.html">폼 요소를 어떻게 비활성화/활성화할 수 있나요?</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="how-do-i-check-uncheck-a-checkbox-input-or-radio-button.html">체크박스 입력이나 라디오 버튼을 어떻게 체크/해제할 수 있나요?</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="how-do-i-get-the-text-value-of-a-selected-option.html">선택된 옵션의 텍스트 값을 어떻게 가져올 수 있나요?</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="how-do-i-replace-text-from-the-3rd-element-of-a-list-of-10-items.html">10개 항목 리스트의 3번째 요소의 텍스트를 어떻게 교체할 수 있나요?</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="how-do-i-pull-a-native-dom-element-from-a-jquery-object.html">jQuery 객체에서 네이티브 DOM 요소를 어떻게 가져올 수 있나요?</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">이벤트</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">jQuery 이벤트 기초</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">이벤트 헬퍼</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">이벤트 소개</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">이벤트 처리</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">이벤트 처리 함수 내부</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">이벤트 위임 이해하기</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">이벤트 핸들러 트리거하기</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">jQuery 이벤트의 역사</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">커스텀 이벤트 소개</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">jQuery 이벤트 확장</span>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">효과</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">효과 소개</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">.animate()를 사용한 커스텀 효과</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">큐(Queue)와 데크(Dequeue) 설명</span>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Ajax</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">주요 개념</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">jQuery의 Ajax 관련 메서드</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">Ajax와 폼</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">JSONP 작업하기</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">Ajax 이벤트</span>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">플러그인</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">플러그인 찾기 및 평가하기</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">기본 플러그인 만들기</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">npm에 jQuery 플러그인 게시하기</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">고급 플러그인 개념</span>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">성능</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">루프 외부에 추가하기</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">루프 중 길이 캐싱</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">작업을 위해 요소 분리하기</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">존재하지 않는 요소에 작용하지 않기</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">선택자 최적화</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">많은 요소의 CSS 변경에 스타일시트 사용하기</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">jQuery를 블랙박스로 취급하지 않기</span>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">코드 구성</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">코드 구성 개념</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">익명 함수 주의하기</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">DRY 원칙 유지하기</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">기능 및 브라우저 감지</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">지연된 객체</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text">jQuery 지연된 객체</span>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text">지연된 객체 예제</span>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">jQuery UI</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">jQuery UI 시작하기</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">jQuery UI 작동 방식</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">jQuery UI 테마 적용</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">jQuery UI ThemeRoller 사용하기</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text">위젯 팩토리</span>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text">위젯 팩토리를 사용하는 이유</span>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text">위젯 팩토리 사용 방법</span>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text">위젯 메서드 호출</span>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text">위젯 팩토리로 위젯 확장하기</span>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text">classes 옵션 사용하기</span>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">jQuery UI 사용하기</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text">AMD와 함께 jQuery UI 사용하기</span>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text">Bower와 함께 jQuery UI 사용하기</span>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">jQuery 모바일</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">jQuery 모바일 시작하기</span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text">ThemeRoller로 커스텀 테마 만들기</span>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">jQuery 학습하기</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="../index.html">jQuery 학습하기</a></div>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">jQuery 학습하기</a></li>
+    <li>jQuery 코어 사용하기</li>
+    <li><a href="avoiding-conflicts-with-other-libraries.html">다른 라이브러리와의 충돌 방지하기</a></li>
+  </ul>
+</nav>
+<div class="edit-this-page"><a href="https://github.com/foreverfl/jquery-learn-ko/edit/main/modules/using-jquery-core/pages/avoiding-conflicts-with-other-libraries.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">다른 라이브러리와의 충돌 방지하기</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>jQuery 라이브러리와 사실상 모든 플러그인은 jQuery 네임스페이스 내에 포함되어 있습니다. 일반적인 규칙으로, 전역 객체들도 jQuery 네임스페이스 내에 저장되므로, jQuery와 다른 라이브러리(예: prototype.js, MooTools, 또는 YUI) 사이에 충돌이 발생하지 않아야 합니다.</p>
+</div>
+<div class="paragraph">
+<p>그러나 한 가지 주의할 점이 있습니다: 기본적으로 jQuery는 <code>$</code>를 <code>jQuery</code>의 단축어로 사용합니다. 따라서 <code>$</code> 변수를 사용하는 다른 JavaScript 라이브러리를 사용하고 있다면 jQuery와 충돌이 발생할 수 있습니다. 이러한 충돌을 피하기 위해, jQuery를 페이지에 로드한 직후, 그리고 페이지에서 jQuery를 사용하려고 시도하기 전에 jQuery를 no-conflict 모드로 설정해야 합니다.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_jquery를_no_conflict_모드로_설정하기"><a class="anchor" href="#_jquery를_no_conflict_모드로_설정하기"></a>jQuery를 No-Conflict 모드로 설정하기</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>jQuery를 no-conflict 모드로 설정할 때, <code>$</code> 별칭을 대체할 새로운 변수 이름을 지정할 수 있습니다.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">&lt;!-- jQuery를 no-conflict 모드로 설정하기. --&gt;
+&lt;script src="prototype.js"&gt;&lt;/script&gt;
+&lt;script src="jquery.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+
+var $j = jQuery.noConflict();
+// $j는 이제 jQuery 함수의 별칭입니다; 새 별칭 생성은 선택사항입니다.
+
+$j(document).ready(function() {
+    $j( "div" ).hide();
+});
+
+// $ 변수는 이제 prototype의 의미를 가지며, document.getElementById()의 단축어입니다.
+// 아래의 mainDiv는 jQuery 객체가 아닌 DOM 요소입니다.
+window.onload = function() {
+    var mainDiv = $( "main" );
+}
+
+&lt;/script&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>위의 코드에서 <code>$</code>는 원래 라이브러리의 의미로 되돌아갑니다. 애플리케이션의 나머지 부분에서 여전히 전체 함수 이름 <code>jQuery</code>와 새로운 별칭 <code>$j</code>를 사용할 수 있습니다. 새 별칭은 원하는 대로 이름을 지을 수 있습니다: <code>jq</code>, <code>$J</code>, <code>awesomeQuery</code> 등.</p>
+</div>
+<div class="paragraph">
+<p>마지막으로, 전체 <code>jQuery</code> 함수 이름의 다른 대안을 정의하고 싶지 않다면 (<code>$`를 정말 사용하고 싶고 다른 라이브러리의 `$</code> 메서드를 사용하는 것에 신경 쓰지 않는다면), 다음과 같은 접근 방식을 시도해 볼 수 있습니다. 단순히 <code>$</code>를 <code>jQuery( document ).ready()</code> 함수에 전달된 인수로 추가하는 것입니다. 이는 매우 간결한 jQuery 코드의 이점을 여전히 원하지만 다른 라이브러리와의 충돌을 원하지 않는 경우에 가장 자주 사용됩니다.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">&lt;!-- jQuery를 no-conflict 모드로 설정하는 다른 방법. --&gt;
+&lt;script src="prototype.js"&gt;&lt;/script&gt;
+&lt;script src="jquery.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+
+jQuery.noConflict();
+
+jQuery( document ).ready(function( $ ) {
+    // 여기에서 지역 범위의 $를 jQuery의 별칭으로 사용할 수 있습니다.
+    $( "div" ).hide();
+});
+
+// 전역 범위의 $ 변수는 prototype.js의 의미를 가집니다.
+window.onload = function(){
+    var mainDiv = $( "main" );
+}
+
+&lt;/script&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>이는 완전한 호환성을 달성하기 위해 변경해야 할 코드가 적기 때문에 대부분의 코드에 대한 이상적인 해결책일 것입니다.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_다른_라이브러리_전에_jquery_포함하기"><a class="anchor" href="#_다른_라이브러리_전에_jquery_포함하기"></a>다른 라이브러리 전에 jQuery 포함하기</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>위의 코드 스니펫은 jQuery가 prototype.js가 로드된 후에 로드되는 것을 전제로 합니다. jQuery를 다른 라이브러리 전에 포함하면, jQuery로 작업할 때 <code>jQuery</code>를 사용할 수 있지만 <code>$</code>는 다른 라이브러리에서 정의한 의미를 가질 것입니다. <code>jQuery.noConflict()</code>를 호출하여 <code>$</code> 별칭을 포기할 필요가 없습니다.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">&lt;!-- 다른 라이브러리 전에 jQuery 로딩하기. --&gt;
+&lt;script src="jquery.js"&gt;&lt;/script&gt;
+&lt;script src="prototype.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+
+// jQuery를 참조하기 위해 전체 jQuery 함수 이름을 사용합니다.
+jQuery( document ).ready(function() {
+    jQuery( "div" ).hide();
+});
+
+// prototype.js에서 정의된 대로 $ 변수를 사용합니다.
+window.onload = function() {
+    var mainDiv = $( "main" );
+};
+
+&lt;/script&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_jquery_함수를_참조하는_방법_요약"><a class="anchor" href="#_jquery_함수를_참조하는_방법_요약"></a>jQuery 함수를 참조하는 방법 요약</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>다음은 다른 라이브러리의 존재로 인해 <code>$</code> 변수 사용에 대한 충돌이 발생할 때 jQuery 함수를 참조할 수 있는 방법을 요약한 것입니다:</p>
+</div>
+<div class="sect2">
+<h3 id="_새로운_별칭_생성하기"><a class="anchor" href="#_새로운_별칭_생성하기"></a>새로운 별칭 생성하기</h3>
+<div class="paragraph">
+<p><code>jQuery.noConflict()</code> 메서드는 jQuery 함수에 대한 참조를 반환하므로, 원하는 변수에 이를 캡처할 수 있습니다:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">&lt;script src="prototype.js"&gt;&lt;/script&gt;
+&lt;script src="jquery.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+
+// $를 prototype.js에 돌려주고; jQuery에 대한 새로운 별칭을 만듭니다.
+var $jq = jQuery.noConflict();
+
+&lt;/script&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_즉시_실행_함수_표현식_사용하기"><a class="anchor" href="#_즉시_실행_함수_표현식_사용하기"></a>즉시 실행 함수 표현식 사용하기</h3>
+<div class="paragraph">
+<p>코드를 즉시 실행 함수 표현식으로 감싸서 표준 <code>$</code>를 계속 사용할 수 있습니다; 이는 또한 jQuery 플러그인 작성을 위한 표준 패턴이며, 여기서 작성자는 다른 라이브러리가 <code>$</code>를 점유했는지 알 수 없습니다. 플러그인 작성에 대한 자세한 정보는 플러그인 섹션을 참조하세요.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">&lt;!-- 즉시 실행 함수 표현식 내에서 $ 사용하기. --&gt;
+&lt;script src="prototype.js"&gt;&lt;/script&gt;
+&lt;script src="jquery.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+
+jQuery.noConflict();
+
+(function( $ ) {
+    // 여기에 $를 사용하는 jQuery 코드를 작성하세요
+})( jQuery );
+
+&lt;/script&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>이 기법을 사용하면 즉시 실행 함수 내에서 prototype.js 메서드를 사용할 수 없다는 점에 유의하세요. <code>$</code>는 jQuery에 대한 참조이며, prototype.js가 아닙니다.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_jquery_document_ready_함수에_전달되는_인수_사용하기"><a class="anchor" href="#_jquery_document_ready_함수에_전달되는_인수_사용하기"></a>jQuery( document ).ready() 함수에 전달되는 인수 사용하기</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">&lt;script src="jquery.js"&gt;&lt;/script&gt;
+&lt;script src="prototype.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+
+jQuery(document).ready(function( $ ) {
+    // 여기에 jQuery를 참조하기 위해 $를 사용하는 jQuery 코드를 작성하세요.
+});
+
+&lt;/script&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>또는 DOM ready 함수에 대해 더 간결한 구문을 사용할 수 있습니다:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">&lt;script src="jquery.js"&gt;&lt;/script&gt;
+&lt;script src="prototype.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+
+jQuery(function($){
+    // 여기에 $를 사용하는 jQuery 코드를 작성하세요
+});
+
+&lt;/script&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="document-ready.html">$( document ).ready()</a></span>
+  <span class="next"><a href="attributes.html">속성</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>저작권 © <a href="https://opendevise.com" target="_blank" rel="noopener">OpenDevise Inc.</a> 및 <a href="https://antora.org">Antora</a>의 개인 기여자들. 사이트 배포는 <a href="https://vercel.com/" target="_blank" rel="noopener">Vercel</a>에 의해 이루어집니다.</p>
+  <p>별도로 명시되지 않는 한, docs.antora.org, Antora 및 Antora UI는 <a href="https://www.mozilla.org/en-US/MPL/2.0/">Mozilla Public License Version 2.0</a> (MPL-2.0)에 따라 라이선스가 부여됩니다.</p>
+  <p>AsciiDoc®는 Eclipse Foundation, Inc.의 상표입니다.</p>
+</footer><script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

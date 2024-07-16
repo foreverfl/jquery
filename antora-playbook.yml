@@ -1,0 +1,22 @@
+site:
+  title: jQuery
+  url: https://jquery.mogumogu.dev/
+  start_page: jquery-learn-ko::index.adoc
+
+content:
+  sources:
+    - url: https://github.com/foreverfl/jquery-learn-ko.git
+      branches: [main]
+
+ui:
+  bundle:
+    # url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable
+    url: ./ui-bundle.zip
+    snapshot: true
+
+output:
+  clean: true
+
+asciidoc:
+  attributes:
+    page-pagination: "@"
