@@ -1,6 +1,6 @@
 site:
   title: jQuery
-  url: https://jquery.mogumogu.dev/
+  url: https://jquery-ko.mogumogu.dev/
   start_page: jquery-learn-ko::index.adoc
 
 content:
